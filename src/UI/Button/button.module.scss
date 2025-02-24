@@ -1,0 +1,54 @@
+.searchButton {
+  width: 71px;
+  height: 40px;
+  background-color: #514A4A;
+  color: #fff;
+  font-weight: 475;
+  font-size: 14px;
+  line-height: 20px;
+  border-radius: 0 4px 4px 0;
+  border: none;
+}
+
+.addPositionButton {
+  position: relative;
+  width: 160px;
+  height: 40px;
+  padding: 10px 14px 0 14px;
+  text-align: right;
+  border-radius: 4px;
+  background: #A85757;
+  border: none;
+  transition: 0.4s all;
+
+  &:hover {
+    scale: 1.03;
+  }
+}
+
+.login {
+  width: 90px;
+  height: 35px;
+  background-color: #A85757;
+  color: #fff;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 400;
+  text-align: center;
+  border: none;
+  cursor: pointer;
+}
+
+.registration {
+  width: 200px;
+  height: 35px;
+  background-color: #467853;
+  color: #fff;
+  margin-left: 10px;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 400;
+  text-align: center;
+  border: none;
+  cursor: pointer;
+}

@@ -1,0 +1,10 @@
+.select{
+    position: relative;
+    margin-left: 13px;
+    width: 76px;
+    height: 40px;
+    border-radius: 6px;
+    background-color: rgb(81, 74, 74);
+    color: white;
+    padding: 0 12px 0 12px;
+}
