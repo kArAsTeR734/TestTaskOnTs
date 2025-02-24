@@ -3,8 +3,8 @@ import {useQuery, UseQueryResult} from "@tanstack/react-query";
 interface UseFetchingProps<TData> {
     queryKey: string[];
     callback: (page: number, limit: number) => Promise<TData>;
-    page?: number;
-    limit?: number;
+    page: number;
+    limit: number;
 }
 
 export const useFetching = <TData,>({
