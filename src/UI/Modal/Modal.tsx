@@ -7,16 +7,17 @@ import Input from "../Input/Input.tsx";
 import {IDetail} from "../../models/IDetail.ts";
 
 interface ModalProps{
-    editingPosition: IDetail | null;
-    onSave: (name: string) => void;
-    onClose: () => void;
+    editingDetail: IDetail | null;
+    onSave: (detail: IDetail | null) => void;
+
 }
 
-const Modal:FC<ModalProps> = ({editingPosition,onSave,onClose}) => {
+const Modal:FC<ModalProps> = ({editingDetail,onSave}) => {
     const title = useInput('');
     const code = useInput('');
     const unit = useInput('');
     const {modal, setActive, CreateItem} = useModal();
+
     const createItem = (e: React.FormEvent) => {
         e.preventDefault();
         const newItem = {
@@ -45,7 +46,11 @@ const Modal:FC<ModalProps> = ({editingPosition,onSave,onClose}) => {
                 </div>
                 <div className={classes.modal_info}>
                     <div className={classes.modal_header} id="modal_header"></div>
-                    <div className={classes.modal_subheader}>Заполните все поля для создания новой номенкулатуры</div>
+                    <div className={classes.modal_subheader}>
+                        {editingDetail?.title
+                            ? editingDetail.title
+                            : 'Заполните все поля для создания новой номенкулатуры'}
+                    </div>
                     <form
                         className={classes.add_item_form}
                         onSubmit={createItem}>
@@ -62,6 +67,7 @@ const Modal:FC<ModalProps> = ({editingPosition,onSave,onClose}) => {
                                 className={classes.title_field}
                                 id="title"
                                 name="title"
+                                value = {editingDetail?.title}
                                 placeholder="Деталь X"
                                 required/>
                             <div id="titleErrors"></div>
@@ -76,6 +82,7 @@ const Modal:FC<ModalProps> = ({editingPosition,onSave,onClose}) => {
                             <br/>
                             <Input
                                 {...unit}
+                                value = {editingDetail?.body}
                                 type="text"
                                 className={classes.unit_field}
                                 id="unit"
@@ -95,6 +102,7 @@ const Modal:FC<ModalProps> = ({editingPosition,onSave,onClose}) => {
                             <Input
                                 {...code}
                                 type="text"
+                                value = {editingDetail?.id}
                                 className={classes.item_field}
                                 id="code"
                                 name="code"
@@ -129,7 +137,7 @@ const Modal:FC<ModalProps> = ({editingPosition,onSave,onClose}) => {
                                 Подтвердить
                             </Button>
                             <Button
-                                onClick={() => createItem}
+                                onClick={() => onSave(editingDetail)}
                                 className={[classes.change_btn, classes.hide].join(' ')}>
                                 Изменить
                             </Button>

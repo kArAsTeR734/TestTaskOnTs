@@ -14,8 +14,6 @@ export default function Table() {
     const {modal,setActive} = useModal();
     const [editingDetail, setEditingDetail] = useState<IDetail| null>(null);
 
-
-
     const {data, isPending, isLoading} = useFetching({
         queryKey: ["PaginationPosts"],
         callback: fetchDetails,
@@ -28,6 +26,9 @@ export default function Table() {
         setEditingDetail(detail);
     }
 
+    const handleSaveEditedItem = ()=>{
+        setActive(!modal)
+    }
 
     if (isPending) return <div>Loading...</div>;
 
@@ -49,7 +50,7 @@ export default function Table() {
                     </table>
                 </section>
             }
-            <Modal editingPosition={editingDetail} onClose={() => console.log('Hello World')} onSave={() => console.log('Hello World')}/>
+            <Modal editingDetail={editingDetail}  onSave={() => handleSaveEditedItem}/>
         </>
     )
 }

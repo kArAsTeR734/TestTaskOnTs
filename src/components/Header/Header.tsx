@@ -6,17 +6,25 @@ import {useFetching} from "../../hooks/useFetching.ts";
 import {getAllDetails} from "../../API/DetailService.ts";
 import {usePagination} from "../../hooks/usePagination.ts";
 import {useModal} from "../../hooks/useModal.ts";
+import {useContext} from "react";
+import {TableContext} from "../../context/TableContext.tsx";
 
 export default function Header() {
     const search = useInput("");
     const {modal, setActive} = useModal();
     const {page, limit} = usePagination();
+    const {setEditingDetail} = useContext(TableContext);
     const {data} = useFetching({
         queryKey: ["posts"],
         callback: getAllDetails,
         page,
         limit,
     });
+
+    const handleCreateButton = ()=>{
+        setActive(modal);
+        setEditingDetail(null);
+    }
 
     return (
         <>
@@ -43,7 +51,7 @@ export default function Header() {
                 </div>
 
                 <Button
-                    onClick={() => setActive(modal)}
+                    onClick={() => handleCreateButton()}
                     className={btnClasses.addPositionButton}>
                     <div className={headerClasses.addPositionPlus}></div>
                     <div
