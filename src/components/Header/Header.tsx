@@ -6,14 +6,13 @@ import {useFetching} from "../../hooks/useFetching.ts";
 import {getAllDetails} from "../../API/DetailService.ts";
 import {usePagination} from "../../hooks/usePagination.ts";
 import {useModal} from "../../hooks/useModal.ts";
-import {useContext} from "react";
-import {TableContext} from "../../context/TableContext.tsx";
+import {useTable} from '../../hooks/useTable.ts'
 
 export default function Header() {
     const search = useInput("");
     const {modal, setActive} = useModal();
     const {page, limit} = usePagination();
-    const {setEditingDetail} = useContext(TableContext);
+    const {setEditingDetail} = useTable();
     const {data} = useFetching({
         queryKey: ["posts"],
         callback: getAllDetails,

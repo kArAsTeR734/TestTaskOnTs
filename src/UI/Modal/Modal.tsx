@@ -1,36 +1,50 @@
 import classes from "./modal.module.css";
-import {useInput} from "../../hooks/useInput.ts";
 import Button from "../Button/Button.tsx";
 import {useModal} from "../../hooks/useModal.ts";
-import React, {FC} from "react";
+import React, {FC, useEffect, useState} from "react";
 import Input from "../Input/Input.tsx";
 import {IDetail} from "../../models/IDetail.ts";
 
-interface ModalProps{
+interface ModalProps {
     editingDetail: IDetail | null;
-    onSave: (detail: IDetail | null) => void;
-
 }
 
-const Modal:FC<ModalProps> = ({editingDetail,onSave}) => {
-    const title = useInput('');
-    const code = useInput('');
-    const unit = useInput('');
-    const {modal, setActive, CreateItem} = useModal();
+const Modal: FC<ModalProps> = ({editingDetail}) => {
+    const [titleValue, setTitleValue] = useState('');
+    const [codeValue, setCodeValue] = useState('');
+    const [unitValue, setUnitValue] = useState('');
+    const {modal, setActive, CreateItem,ChangeItem} = useModal();
+
+    const handleSaveEditedDetail = () => {
+        const updatedDetail = {...editingDetail, title:titleValue, body:codeValue} as IDetail;
+        console.log("updatedDetail", updatedDetail);
+        ChangeItem(updatedDetail);
+    }
 
     const createItem = (e: React.FormEvent) => {
         e.preventDefault();
         const newItem = {
             id: Date.now(),
-            title: title.value,
-            body: code.value,
+            title: titleValue,
+            body: codeValue,
         };
         CreateItem(newItem);
-        title.value = '';
-        code.value = '';
-        unit.value = '';
-        console.log(newItem);
+        setTitleValue('');
+        setCodeValue('');
+        setUnitValue('');
     }
+
+    useEffect(() => {
+        if (editingDetail) {
+            setTitleValue(editingDetail.title); // Устанавливаем значение из editingDetail
+            setUnitValue(editingDetail.body); // Устанавливаем значение из editingDetail
+            setCodeValue(editingDetail.body); // Устанавливаем значение из editingDetail
+        } else {
+            setTitleValue(""); // Сбрасываем значение, если editingDetail равен null
+            setUnitValue(""); // Сбрасываем значение, если editingDetail равен null
+            setCodeValue(""); // Сбрасываем значение, если editingDetail равен null
+        }
+    }, [editingDetail]); // Зависимость от editingDetail
 
     return (
         <div onClick={() => setActive(modal)}
@@ -62,12 +76,12 @@ const Modal:FC<ModalProps> = ({editingDetail,onSave}) => {
                             </label>
                             <br/>
                             <Input
-                                {...title}
+                                value={titleValue}
+                                onChange={(e:React.ChangeEvent<HTMLInputElement>) => setTitleValue(e.target.value)}
                                 type="text"
                                 className={classes.title_field}
                                 id="title"
                                 name="title"
-                                value = {editingDetail?.title}
                                 placeholder="Деталь X"
                                 required/>
                             <div id="titleErrors"></div>
@@ -81,8 +95,8 @@ const Modal:FC<ModalProps> = ({editingDetail,onSave}) => {
                             </label>
                             <br/>
                             <Input
-                                {...unit}
-                                value = {editingDetail?.body}
+                                value={unitValue}
+                                onChange={(e:React.ChangeEvent<HTMLInputElement>) => setUnitValue(e.target.value)}
                                 type="text"
                                 className={classes.unit_field}
                                 id="unit"
@@ -100,9 +114,9 @@ const Modal:FC<ModalProps> = ({editingDetail,onSave}) => {
                             </label>
                             <br/>
                             <Input
-                                {...code}
+                                value={codeValue}
+                                onChange={(e:React.ChangeEvent<HTMLInputElement>) => setCodeValue(e.target.value)}
                                 type="text"
-                                value = {editingDetail?.id}
                                 className={classes.item_field}
                                 id="code"
                                 name="code"
@@ -133,12 +147,12 @@ const Modal:FC<ModalProps> = ({editingDetail,onSave}) => {
                             </Button>
                             <Button
                                 onClick={() => createItem}
-                                className={classes.confirm_btn}>
+                                className={editingDetail ? [classes.confirm_btn, classes.hide].join(' ') : classes.confirm_btn}>
                                 Подтвердить
                             </Button>
                             <Button
-                                onClick={() => onSave(editingDetail)}
-                                className={[classes.change_btn, classes.hide].join(' ')}>
+                                onClick={() => handleSaveEditedDetail()}
+                                className={editingDetail ? classes.change_btn : [classes.change_btn, classes.hide].join(' ')}>
                                 Изменить
                             </Button>
                         </div>

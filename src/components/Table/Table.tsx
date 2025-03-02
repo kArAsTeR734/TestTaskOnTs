@@ -5,14 +5,13 @@ import {useFetching} from "../../hooks/useFetching.ts";
 import {usePagination} from "../../hooks/usePagination.ts";
 import {useModal} from "../../hooks/useModal.ts";
 import {IDetail} from "../../models/IDetail.ts";
-import {useState} from "react";
 import Modal from "../../UI/Modal/Modal.tsx";
+import {useTable} from "../../hooks/useTable.ts";
 
 export default function Table() {
-
     const {page, limit} = usePagination();
     const {modal,setActive} = useModal();
-    const [editingDetail, setEditingDetail] = useState<IDetail| null>(null);
+    const {editingDetail, setEditingDetail} = useTable();
 
     const {data, isPending, isLoading} = useFetching({
         queryKey: ["PaginationPosts"],
@@ -24,10 +23,7 @@ export default function Table() {
     const handleEditItem = (detail:IDetail) => {
         setActive(modal);
         setEditingDetail(detail);
-    }
-
-    const handleSaveEditedItem = ()=>{
-        setActive(!modal)
+        console.log(editingDetail);
     }
 
     if (isPending) return <div>Loading...</div>;
@@ -50,7 +46,7 @@ export default function Table() {
                     </table>
                 </section>
             }
-            <Modal editingDetail={editingDetail}  onSave={() => handleSaveEditedItem}/>
+            <Modal editingDetail={editingDetail}/>
         </>
     )
 }

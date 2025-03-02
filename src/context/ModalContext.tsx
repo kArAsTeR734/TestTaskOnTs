@@ -1,15 +1,15 @@
 
 import {createContext, FC, PropsWithChildren, useState} from "react";
 import {IDetail} from "../models/IDetail.ts";
-import {createDetail} from "../API/DetailService.ts";
+import {createDetail, editDetail} from "../API/DetailService.ts";
 import {useMutation, useQueryClient} from "@tanstack/react-query";
 
 interface ModalContextType {
-    ChangeItem: (item: IDetail) => void;
-    CreateItem: (item: { id: number; title:string; body:string }) => void;
+    ChangeItem: (item: IDetail | null) => void;
+    CreateItem: (item: { id: number; title: string; body: string }) => void;
     CancelItem: () => void;
     modal: boolean,
-    setActive: (active:boolean) => void;
+    setActive: (active: boolean) => void;
 }
 
 export const ModalContext = createContext<ModalContextType | null>(null);
@@ -23,18 +23,28 @@ export const ModalProvider: FC<PropsWithChildren> = ({children}) => {
         mutationFn: (newItem: IDetail) => createDetail(newItem),
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: ["PaginationPosts"] });
-            setModal(false); // Закрываем модальное окно
+            setModal(false);
         },
     });
+
+    const editMutation = useMutation({
+        mutationFn:(editingDetail:IDetail) => editDetail(editingDetail),
+        onSuccess:()=>{
+            queryClient.invalidateQueries({queryKey:["PaginationPosts"]});
+            setModal(false);
+        }
+    })
 
     const CreateItem = (item: IDetail) => {
         createMutation.mutate(item)
     }
 
-    const ChangeItem = ()=>{}
+    const ChangeItem = (detail:IDetail)=>{
+        editMutation.mutate(detail) ;
+    }
 
     const CancelItem = () => {
-        setModal(!modal);
+        setModal(modal);
     }
 
     const setActive = () => {

@@ -21,3 +21,9 @@ export const createDetail = async (item: IDetail) => {
     const response = await axios.post('http://localhost:3000/posts', item);
     return response.data;
 };
+
+export const editDetail = async (detail:IDetail) => {
+    const id = detail.id
+    const response = await axios.put(`http://localhost:3000/posts/${id}`, detail);
+    return response.data;
+}
