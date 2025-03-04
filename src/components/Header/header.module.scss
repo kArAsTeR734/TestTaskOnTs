@@ -45,47 +45,6 @@ a{
   padding: 6px 8px 4px 8px;
 }
 
-.item_actions {
-  display: flex;
-  flex-direction: column;
-  padding: 0 16px 0 10px;
-}
-
-.item_search {
-  position: relative;
-  display: flex;
-
-  &-icon {
-    position: absolute;
-    width: 18px;
-    top: 10px;
-    left: 10px;
-    height: 18px;
-  }
-}
-
-.search_input {
-  padding: 10px 43px 10px 34px;
-  width: 210px;
-  height: 40px;
-  border: 1px solid rgb(223, 221, 221);
-  border-radius: 4px;
-}
-
-.search_button {
-  color: #fff;
-  width: 71px;
-  height: 40px;
-  border-radius: 0 4px 4px 0;
-  border: none;
-  margin-right: 5px;
-  background: rgb(81, 74, 74);
-  font-size: 14px;
-  font-weight: 400;
-  text-align: center;
-  cursor: pointer;
-}
-
 .addPositionPlus {
   position: absolute;
   width: 10px;

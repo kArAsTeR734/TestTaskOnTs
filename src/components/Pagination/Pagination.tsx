@@ -8,7 +8,7 @@ import {getTotalCount} from "../../utils/GetTotalCount.ts";
 
 export default function Pagination() {
 
-    const {page, limit, changePage} = usePagination();
+    const {page, limit, changePage, changeLimit} = usePagination();
 
     const {data} = useFetching({
         queryKey: ["posts"],
@@ -16,7 +16,6 @@ export default function Pagination() {
         page,
         limit,
     });
-
     const totalCount = data?.length;
     const pagesCount = getTotalCount(totalCount, limit);
     const pagesArray = usePageArray(pagesCount);
@@ -41,12 +40,13 @@ export default function Pagination() {
                 <div className="page_count">
                     <div className="count_text">Показывать по:</div>
                     <Select
+                        onChange={() => changeLimit(limit)}
                         options={[
-                            { name: '10', value: 10 },
-                            { name: '20', value: 20 },
-                            { name: '30', value: 30 },
-                            { name: '40', value: 40 },
-                            { name: '50', value: 50 },
+                            {name: '10', value: 10},
+                            {name: '20', value: 20},
+                            {name: '30', value: 30},
+                            {name: '40', value: 40},
+                            {name: '50', value: 50},
                         ]}
                     />
 

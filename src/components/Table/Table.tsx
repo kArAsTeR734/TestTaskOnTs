@@ -1,31 +1,20 @@
 import './product-table.module.css'
-import {fetchDetails} from "../../API/DetailService.ts";
 import TableItem from "./TableItem.tsx";
-import {useFetching} from "../../hooks/useFetching.ts";
-import {usePagination} from "../../hooks/usePagination.ts";
 import {useModal} from "../../hooks/useModal.ts";
 import {IDetail} from "../../models/IDetail.ts";
 import Modal from "../../UI/Modal/Modal.tsx";
 import {useTable} from "../../hooks/useTable.ts";
+import {useSearch, useSearchProvider} from "../../hooks/useSearch.ts";
 
 export default function Table() {
-    const {page, limit} = usePagination();
     const {modal,setActive} = useModal();
-    const {editingDetail, setEditingDetail} = useTable();
-
-    const {data, isPending, isLoading} = useFetching({
-        queryKey: ["PaginationPosts"],
-        callback: fetchDetails,
-        page,
-        limit,
-    });
-
+    const searchQuery = useSearchProvider();
+    const {editingDetail, setEditingDetail,data,isLoading,isPending} = useTable();
     const handleEditItem = (detail:IDetail) => {
         setActive(modal);
         setEditingDetail(detail);
-        console.log(editingDetail);
     }
-
+    const searchedDetails = useSearch(data,searchQuery.value);
     if (isPending) return <div>Loading...</div>;
 
     return (
@@ -41,7 +30,10 @@ export default function Table() {
                             <td className="table__header_item"><strong>Артикул/код</strong></td>
                             <td className="table__header_item"><strong></strong></td>
                         </tr>
-                        {data?.map(detail => <TableItem key={detail.id} onEdit = {handleEditItem} detail={detail}/>)}
+                        {searchedDetails?.map(detail =>
+                            <TableItem key={detail.id}
+                                       onEdit = {handleEditItem}
+                                       detail={detail}/>)}
                         </tbody>
                     </table>
                 </section>

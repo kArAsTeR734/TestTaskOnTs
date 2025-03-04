@@ -2,138 +2,117 @@
   "posts": [
     {
       "id": "1",
-      "title": "a title",
-      "body": 100
+      "title": "Корпус Т5МЭ.018500.001 ст.1",
+      "unit": "шт",
+      "code": "#3499656"
     },
     {
       "id": "2",
-      "title": "another title",
-      "body": "100"
+      "title": "РШ. Пластина радиусная ст.2",
+      "unit": "шт",
+      "code": "#8753456"
     },
     {
       "id": "3",
-      "title": "another title",
-      "body": "200"
+      "title": "Гриндер. Ось ролика гриндера ",
+      "unit": "шт",
+      "code": "#3676899"
     },
     {
       "id": "4",
-      "title": "another title",
-      "body": 400
+      "title": "Гриндер. Основание ст.2",
+      "unit": "шт",
+      "code": "#9087543"
     },
     {
       "id": "5",
-      "title": "another title",
-      "body": 500
+      "title": "Наконечник T27П.000410.001 ст.2",
+      "unit": "шт",
+      "code": "#3255668"
     },
     {
       "id": "6",
-      "title": "another title",
-      "body": 600
+      "title": "Измерительный стержень ст.1",
+      "unit": "шт",
+      "code": "#5566743"
     },
     {
       "id": "7",
-      "title": "another title",
-      "body": 700
+      "title": "Винт установочный ст.2",
+      "unit": "шт",
+      "code": "#0032145"
     },
     {
       "id": "8",
-      "title": "another title",
-      "body": 800
+      "title": "Втулка T27П.000210.002 ст.2",
+      "unit": "шт",
+      "code": "#7885431"
     },
     {
       "id": "9",
-      "title": "another title",
-      "body": 2900
+      "title": "Штуцер T27П.000150.002 ст.1",
+      "unit": "шт",
+      "code": "#1135465"
     },
     {
       "id": "10",
-      "title": "another title",
-      "body": 2100
+      "title": "Указатель ст.1",
+      "unit": "кг",
+      "code": "#3499656"
     },
     {
       "id": "11",
       "title": "another title",
-      "body": 2060
+      "unit": "шт",
+      "code": "#3499656"
     },
     {
       "id": "12",
       "title": "another title",
-      "body": 20640
+      "unit": "шт",
+      "code": "#3499656"
     },
     {
       "id": "13",
       "title": "another title",
-      "body": 20640
+      "unit": "шт",
+      "code": "#3499656"
     },
     {
       "id": "14",
       "title": "another title",
-      "body": 200
+      "unit": "шт",
+      "code": "#3499656"
     },
     {
       "id": "15",
       "title": "another title",
-      "body": 200
+      "unit": "шт",
+      "code": "#3499656"
     },
     {
       "id": "16",
       "title": "another title",
-      "body": 2030
+      "unit": "шт",
+      "code": "#3499656"
     },
     {
       "id": "17",
       "title": "another title",
-      "body": 20230
+      "unit": "шт",
+      "code": "#3499656"
     },
     {
       "id": "18",
       "title": "another title",
-      "body": 200
+      "unit": "шт",
+      "code": "#3499656"
     },
     {
       "id": "19",
       "title": "another title",
-      "body": 205230
-    },
-    {
-      "id": "20",
-      "title": "another title",
-      "body": 200
-    },
-    {
-      "id": "21",
-      "title": "another title",
-      "body": 27500
-    },
-    {
-      "id": "22",
-      "title": "another title",
-      "body": 200
-    },
-    {
-      "id": 1740387265348,
-      "title": "12",
-      "body": "123"
-    },
-    {
-      "id": 1740922609236,
-      "title": "123",
-      "body": "123"
-    },
-    {
-      "id": 1740926505385,
-      "title": "10",
-      "body": "15"
-    },
-    {
-      "id": 1740926538948,
-      "title": "123",
-      "body": "4567"
-    },
-    {
-      "id": 1740930708132,
-      "title": "another ",
-      "body": 200
+      "unit": "шт",
+      "code": "#3499656"
     }
   ]
 }

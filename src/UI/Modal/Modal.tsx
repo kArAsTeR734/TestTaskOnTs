@@ -16,7 +16,7 @@ const Modal: FC<ModalProps> = ({editingDetail}) => {
     const {modal, setActive, CreateItem,ChangeItem} = useModal();
 
     const handleSaveEditedDetail = () => {
-        const updatedDetail = {...editingDetail, title:titleValue, body:codeValue} as IDetail;
+        const updatedDetail = {...editingDetail, title:titleValue, code:codeValue,unit:unitValue} as IDetail;
         console.log("updatedDetail", updatedDetail);
         ChangeItem(updatedDetail);
     }
@@ -26,7 +26,8 @@ const Modal: FC<ModalProps> = ({editingDetail}) => {
         const newItem = {
             id: Date.now(),
             title: titleValue,
-            body: codeValue,
+            code: codeValue,
+            unit: unitValue,
         };
         CreateItem(newItem);
         setTitleValue('');
@@ -37,8 +38,8 @@ const Modal: FC<ModalProps> = ({editingDetail}) => {
     useEffect(() => {
         if (editingDetail) {
             setTitleValue(editingDetail.title); // Устанавливаем значение из editingDetail
-            setUnitValue(editingDetail.body); // Устанавливаем значение из editingDetail
-            setCodeValue(editingDetail.body); // Устанавливаем значение из editingDetail
+            setUnitValue(editingDetail.unit); // Устанавливаем значение из editingDetail
+            setCodeValue(editingDetail.code); // Устанавливаем значение из editingDetail
         } else {
             setTitleValue(""); // Сбрасываем значение, если editingDetail равен null
             setUnitValue(""); // Сбрасываем значение, если editingDetail равен null

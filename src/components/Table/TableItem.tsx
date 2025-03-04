@@ -12,9 +12,9 @@ const TableItem:FC<TableItemProps> = ({detail, onEdit}) => {
     return (
         <>
             <tr className="row">
-                <td className="col" >{detail.id}</td>
-                <td className="col">{detail.title}</td>
-                <td className="col">{detail.body}</td>
+                <td className="col" >{detail.title}</td>
+                <td className="col">{detail.unit}</td>
+                <td className="col">{detail.code}</td>
                 <td className="col">
                     <div onClick={() => onEdit(detail)} className="icon">
                         <img src="/src/icons/pencil.png" alt=""/>

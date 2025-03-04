@@ -1,15 +1,14 @@
 import '../header.module.css'
-import {IDetail} from "../../../models/IDetail.ts";
 import {FC} from "react";
 
-interface ItemCounterProps{
-    data:IDetail[];
+interface ItemCounterProps {
+    dataLength: number;
 }
 
-const ItemCounter:FC<ItemCounterProps> = ({data}) => {
+const ItemCounter: FC<ItemCounterProps> = ({dataLength}) => {
     return (
         <div className="counter_wrapper">
-            <div className="item_count" id="counter">{data?.length} единиц</div>
+            <div className="item_count" id="counter">{dataLength} единиц</div>
         </div>
     );
 };

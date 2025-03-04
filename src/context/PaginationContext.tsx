@@ -17,7 +17,6 @@ export const PaginationProvider: FC<PropsWithChildren> = ({children}) => {
         setLimit(limit)
         window.scrollTo({top: 0});
     }
-
     const changePage = (page: number) => {
         setPage(page);
         window.scrollTo({top: 0});

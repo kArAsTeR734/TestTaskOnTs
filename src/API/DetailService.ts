@@ -8,10 +8,10 @@ export async function getAllDetails(): Promise<IDetail[]> {
 
 //json-server не может адекватно делать пагинацию с выбором количества отображаемых элементов
 // Поэтому только страницы...
-export async function fetchDetails(page : number): Promise<IDetail[]> {
-    const response =  await axios.get('http://localhost:3000/posts',{
-        params:{
-            _page:page,
+export async function fetchDetails(page: number): Promise<IDetail[]> {
+    const response = await axios.get('http://localhost:3000/posts', {
+        params: {
+            _page: page,
         },
     });
     return response.data.data;
@@ -22,7 +22,7 @@ export const createDetail = async (item: IDetail) => {
     return response.data;
 };
 
-export const editDetail = async (detail:IDetail) => {
+export const editDetail = async (detail: IDetail) => {
     const id = detail.id
     const response = await axios.put(`http://localhost:3000/posts/${id}`, detail);
     return response.data;
