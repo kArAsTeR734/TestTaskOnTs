@@ -3,7 +3,7 @@ import Select from "../../UI/Select/Select.tsx";
 import {usePagination} from "../../hooks/usePagination.ts";
 import {usePageArray} from "../../hooks/usePageArray.ts";
 import {useFetching} from "../../hooks/useFetching.ts";
-import {getAllDetails} from "../../API/DetailService.ts";
+import {DetailService} from "../../API/DetailService.ts";
 import {getTotalCount} from "../../utils/GetTotalCount.ts";
 
 export default function Pagination() {
@@ -12,7 +12,7 @@ export default function Pagination() {
 
     const {data} = useFetching({
         queryKey: ["posts"],
-        callback: getAllDetails,
+        callback: DetailService.getAllDetails,
         page,
         limit,
     });

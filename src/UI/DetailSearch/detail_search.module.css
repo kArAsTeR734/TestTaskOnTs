@@ -24,18 +24,4 @@
   border-radius: 4px;
 }
 
-.search_button {
-  color: #fff;
-  width: 71px;
-  height: 40px;
-  border-radius: 0 4px 4px 0;
-  border: none;
-  margin-right: 5px;
-  background: rgb(81, 74, 74);
-  font-size: 14px;
-  font-weight: 400;
-  text-align: center;
-  cursor: pointer;
-}
-
 /*# sourceMappingURL=detail_search.module.css.map */

@@ -1,7 +1,7 @@
 import {IDetail} from "../models/IDetail.ts";
 import {createContext, FC, PropsWithChildren, useState} from "react";
 import {useFetching} from "../hooks/useFetching.ts";
-import {fetchDetails} from "../API/DetailService.ts";
+import {DetailService} from "../API/DetailService.ts";
 import {usePagination} from "../hooks/usePagination.ts";
 
 interface TableContextType {
@@ -21,7 +21,7 @@ export const TableProvider: FC<PropsWithChildren> = ({children}) => {
 
     const {data,isLoading,isPending} = useFetching({
         queryKey: ["PaginationPosts"],
-        callback: fetchDetails,
+        callback: DetailService.fetchDetails,
         page,
         limit,
     });

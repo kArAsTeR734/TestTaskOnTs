@@ -1,6 +1,6 @@
 import {createContext, FC, PropsWithChildren, useState} from "react";
 import {IDetail} from "../models/IDetail.ts";
-import {createDetail, editDetail} from "../API/DetailService.ts";
+import {DetailService} from "../API/DetailService.ts";
 import {useMutation, useQueryClient} from "@tanstack/react-query";
 
 interface ModalContextType {
@@ -18,7 +18,7 @@ export const ModalProvider: FC<PropsWithChildren> = ({children}) => {
     const queryClient = useQueryClient();
     const [modal, setModal] = useState(false);
     const createMutation = useMutation({
-        mutationFn: (newItem: IDetail) => createDetail(newItem),
+        mutationFn: (newItem: IDetail) => DetailService.createDetail(newItem),
         onSuccess: () => {
             queryClient.invalidateQueries({queryKey: ["PaginationPosts"]});
             queryClient.invalidateQueries({queryKey: ["posts"]});
@@ -27,7 +27,7 @@ export const ModalProvider: FC<PropsWithChildren> = ({children}) => {
     });
 
     const editMutation = useMutation({
-        mutationFn: (editingDetail: IDetail) => editDetail(editingDetail),
+        mutationFn: (editingDetail: IDetail) => DetailService.editDetail(editingDetail),
         onSuccess: () => {
             queryClient.invalidateQueries({queryKey: ["PaginationPosts"]});
             setModal(false);

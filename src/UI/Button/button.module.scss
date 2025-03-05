@@ -1,15 +1,3 @@
-.searchButton {
-  width: 71px;
-  height: 40px;
-  background-color: #514A4A;
-  color: #fff;
-  font-weight: 475;
-  font-size: 14px;
-  line-height: 20px;
-  border-radius: 0 4px 4px 0;
-  border: none;
-}
-
 .addPositionButton {
   position: relative;
   width: 160px;
@@ -50,5 +38,19 @@
   font-weight: 400;
   text-align: center;
   border: none;
+  cursor: pointer;
+}
+
+.searchButton {
+  color: #fff;
+  width: 71px;
+  height: 40px;
+  border-radius: 0 4px 4px 0;
+  border: none;
+  margin-right: 5px;
+  background: rgb(81, 74, 74);
+  font-size: 14px;
+  font-weight: 400;
+  text-align: center;
   cursor: pointer;
 }

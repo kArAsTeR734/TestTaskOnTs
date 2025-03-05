@@ -4,19 +4,17 @@ import {useModal} from "../../hooks/useModal.ts";
 import {IDetail} from "../../models/IDetail.ts";
 import Modal from "../../UI/Modal/Modal.tsx";
 import {useTable} from "../../hooks/useTable.ts";
-import {useSearch, useSearchProvider} from "../../hooks/useSearch.ts";
+import {useSearchProvider} from "../../hooks/useSearch.ts";
 
 export default function Table() {
     const {modal,setActive} = useModal();
-    const searchQuery = useSearchProvider();
-    const {editingDetail, setEditingDetail,data,isLoading,isPending} = useTable();
+    const {searchedDetails} = useSearchProvider();
+    const {editingDetail, setEditingDetail,isLoading,isPending} = useTable();
     const handleEditItem = (detail:IDetail) => {
         setActive(modal);
         setEditingDetail(detail);
     }
-    const searchedDetails = useSearch(data,searchQuery.value);
     if (isPending) return <div>Loading...</div>;
-
     return (
         <>
             {isLoading
